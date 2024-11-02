@@ -1,10 +1,10 @@
 from flask import Flask, request, send_file
 from rembg import remove,new_session
 import io
-import os from environ
+from os import environ
 
 app = Flask(__name__)
-hum_seg_session = new_session(model_name='u2net_human_seg')
+hum_seg_session = new_session()
 
 @app.route('/api/remove-background', methods=['POST'])
 def remove_background():
