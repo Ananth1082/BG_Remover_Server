@@ -1,6 +1,7 @@
 from flask import Flask, request, send_file
 from rembg import remove,new_session
 import io
+import os from environ
 
 app = Flask(__name__)
 hum_seg_session = new_session(model_name='u2net_human_seg')
@@ -34,4 +35,5 @@ def remove_background():
         return {'error': str(e)}, 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    PORT = environ.get("PORT","5000")
+    app.run(host='0.0.0.0', port=int(PORT))
